@@ -5,7 +5,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-//const cors = require('cors');
+ cors = require('cors');
 const {DB_HOST, DB_NAME, PORT, API_NAME, API_VERSION} = require('./config');
 
 //Express
@@ -36,7 +36,7 @@ const baseUrl = `/${API_NAME}/${API_VERSION}`
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-//.use(cors());
+app.use(cors());
 
 //Routes
 const indexRouter = require('./routes/index');
