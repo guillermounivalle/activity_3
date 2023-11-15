@@ -22,7 +22,32 @@ const getUsers = async (req, res) =>{
 };
 
 //get user by email and password
-
+const getUserByEmailAndPassword = async (req, res)=>{
+    const salt = bcryptjs.genSaltSync();
+    const dataFind = {
+        email: req.params.email,
+        password: req.params.password
+    };
+    try {
+        const response = await pool.query('SELECT * FROM users  A WHERE A.email = $1 ',
+        [dataFind.email] );
+        const isPassword =  bcryptjs.compareSync(dataFind.password, response.rows[0].password);
+        const isActive = response.rows[0].active;
+        if(isActive){
+            if(isPassword){
+                console.log("==== ", response.rows[0].password);
+                console.log(isPassword);
+                res.status(200).send(response.rows[0]);
+                }else{
+                    res.status(404).send('password is wrong');
+            };  
+        }else{
+            res.status(404).send('user is not active');
+        };
+    } catch (error) {
+        res.status(404).send(error)
+    };
+};
 
 //Create users
 const createdUser = async(req, res) => {
@@ -43,10 +68,11 @@ const createdUser = async(req, res) => {
         res.status(200).send('user created');
     } catch (error) {
         res.status(404).send(error)
-    }
+    };
 };
 
 module.exports = {
     getUsers,
-    createdUser
+    createdUser,
+    getUserByEmailAndPassword
 };

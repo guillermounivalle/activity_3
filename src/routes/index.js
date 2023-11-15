@@ -5,7 +5,7 @@ var router = express.Router();
 const { check } = require('express-validator');
 
 //import controller
-const {getUsers, createdUser} = require ('../controllers/user.controller');
+const {getUsers, createdUser, getUserByEmailAndPassword} = require ('../controllers/user.controller');
 
 
 /* GET home page. */
@@ -18,6 +18,9 @@ router.get('/', function(req, res, next) {
 
 /* GET Users */
 router.get('/users', getUsers);
+
+/* GET Users by Email and password*/
+router.get('/user/:email/:password', getUserByEmailAndPassword);
 
 /* POST user */
 router.post('/signup',createdUser);
