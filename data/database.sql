@@ -46,7 +46,7 @@ CREATE TABLE list_movie
     user_id INTEGER NOT NULL
 );
 
---Script para adiconar la llave foranea a la tabla . Esta llave apunta a el user_id
+--Script para adicinar la llave foranea a la tabla . Esta llave apunta a el user_id
 --de la tabla users
 ALTER TABLE list_movie 
 ADD CONSTRAINT fk_user_id 
@@ -81,7 +81,8 @@ VALUES('Yeison Vazques', 'yeiva@email.com', '1238569', 'yei2521', '1980-02-28', 
 INSERT INTO users (name, email, password, nickname, birthdate, active)
 VALUES('Pablo Quimbaya', 'pablito123@email.com', '1rt38569', 'polito65', '1990-02-28', TRUE);
 
---Script para ingresar peliculas
+
+--Script para ingresar  peliculas
 INSERT INTO movie (name, release_date, url_image)
 VALUES('The Boy', '2021-02-25', 'https://img.freepik.com/vector-gratis/poster-pelicula-suspenso-profesional_742173-3470.jpg');
 
@@ -109,6 +110,8 @@ VALUES('Scream', '2004-05-25', 'https://www.themoviedb.org/t/p/original/1L5u2cdX
 INSERT INTO movie (name, release_date, url_image)
 VALUES('Terminator', '1989-11-25', 'https://www.originalfilmart.com/cdn/shop/products/terminator_1984_original_film_art_5000x.jpg?v=1640047518');
 
+
+
 --Script para ingresar lista de peliculas
 INSERT INTO list_movie (name, created_date, qualification, quantity_users_evaluates, active, user_id)
 VALUES('lista Miguel', '2023-01-25', 6.6, 3, TRUE, 1 );
@@ -122,7 +125,8 @@ VALUES('lista Yeison', '2023-03-15', 5.0, 3, TRUE, 3 );
 INSERT INTO list_movie (name, created_date, qualification, quantity_users_evaluates, active, user_id)
 VALUES('lista Pablo', '2023-04-15', 8.3, 3, TRUE, 4 );
 
---Script para ingresar identificadores que alistabn id de peliculas con id de lista de peliculas
+
+--Script para ingresar identificadores que alistan id de peliculas con id de lista de peliculas
 --Miguel 1, Paola 2, Yeison 3, Pablo 4
 INSERT INTO aux_list_movie (list_movie_id, movie_id)
 VALUES( 1, 1),( 1, 4),( 1, 7),( 2, 2),( 2, 5),( 2, 8),( 3, 3),( 3, 6),( 3, 9);
